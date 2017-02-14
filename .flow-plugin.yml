@@ -1,0 +1,24 @@
+name: android_emulator
+version: 0.0.1
+language: android
+description: Start an android emulator, which could run your tests in flow.ci
+tags:
+ - flow
+ - plugin
+ - emulator
+ - android
+
+public: true
+
+# clone_in_docker: false
+
+inputs:
+  - name: FLOW_ANDROID_SDK_VERSION
+    editable: true
+
+  - name: FLOW_ANDROID_CPU_VERSION
+    editable: true
+
+outputs:
+
+script_path: ./run.sh
