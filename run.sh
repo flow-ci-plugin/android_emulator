@@ -19,7 +19,7 @@ set +e
 
 array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-androidTest-unaligned.apk 2>&1)
 num=${#array[@]} 
-//如果num等于1,说明没有安装UI测试apk，接下来执行./gradlew assembleAndroidTest命令
+#如果num等于1,说明没有安装UI测试apk，接下来执行./gradlew assembleAndroidTest命令
 if [ $num -eq 1 ] ; then
 echo "can't find -debug-androidTest.unaligned.apk"
 echo "./gradlew assembleAndroidTest"
@@ -35,7 +35,7 @@ adb wait-for-device"
 emulator -avd test -no-audio -no-window -system /usr/sdk/android-sdk-linux/system-images/android-23/default/armeabi-v7a/system.img &
 adb wait-for-device
 
-echo "等待120s"
+echo "等待120s,直到emulator完全启动"
 sleep 120
 
 array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-unaligned.apk 2>&1)
