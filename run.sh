@@ -21,7 +21,7 @@ array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-androidTest-unaligned.apk 2>&1)
 num=${#array[@]} 
 #如果num等于1,说明没有安装UI测试apk，接下来执行./gradlew assembleAndroidTest命令
 if [ $num -eq 1 ] ; then
-echo "can't find -debug-androidTest.unaligned.apk"
+echo "can't find *-debug-androidTest.unaligned.apk"
 echo "./gradlew assembleAndroidTest"
 ./gradlew assembleAndroidTest
 fi
@@ -41,7 +41,7 @@ sleep 120
 array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-unaligned.apk 2>&1)
 for file in ${array[@]}
 do
- echo "=== install APK: "
+ echo "install APK: "
  adb install -r $file
 done
 
