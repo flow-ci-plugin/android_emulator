@@ -22,7 +22,7 @@ array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-androidTest-unaligned.apk 2>&1)
 if [ -z "$array" ] ; then
 echo "can't find *-debug-androidTest-unaligned.apk"
 echo "./gradlew assembleAndroidTest"
-#./gradlew assembleAndroidTest
+./gradlew assembleAndroidTest
 fi
 
 cd /usr/sdk/android-sdk-linux/tools
