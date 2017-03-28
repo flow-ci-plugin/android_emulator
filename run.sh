@@ -35,15 +35,14 @@ cd /usr/sdk/android-sdk-linux/tools
  adb wait-for-device
  
  echo "等待120s,直到emulator完全启动，由于在docker上emulator启动较慢，请耐心等候"
- sleep 120
+ sleep 115
  
- array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-unaligned.apk 2>&1)
- for file in ${array[@]}
+ arrays=$(find $FLOW_CURRENT_PROJECT_PATH -name *-unaligned.apk 2>&1)
+ for file in ${arrays[@]}
  do
  echo "install APK: "
  adb install -r $file
  done
- 
  instrumentation=$(adb shell pm list instrumentation|grep 'test/android'|awk -F ' ' '{print substr($1,17)}')
  echo "shell am instrument -w $instrumentation"
  adb shell am instrument -w $instrumentation
