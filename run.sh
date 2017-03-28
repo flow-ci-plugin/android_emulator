@@ -34,7 +34,7 @@ cd /usr/sdk/android-sdk-linux/tools
  emulator -avd test -no-audio -no-window -system /usr/sdk/android-sdk-linux/system-images/android-23/default/armeabi-v7a/system.img &
  adb wait-for-device
  
- echo "等待120s,直到emulator完全启动"
+ echo "等待120s,直到emulator完全启动，由于在docker上emulator启动较慢，请耐心等候"
  sleep 120
  
  array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-unaligned.apk 2>&1)
