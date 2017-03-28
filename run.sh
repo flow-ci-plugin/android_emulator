@@ -46,4 +46,5 @@ cd /usr/sdk/android-sdk-linux/tools
  done
  instrumentation=$(adb shell pm list instrumentation|grep 'test/android'|awk -F ' ' '{print substr($1,17)}')
  echo "shell am instrument -w $instrumentation"
+ sleep 1
  adb shell am instrument -w $instrumentation
