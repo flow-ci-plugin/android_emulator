@@ -34,7 +34,7 @@ cd /usr/sdk/android-sdk-linux/tools
  echo "adb wait-for-device"
  adb wait-for-device
  
- echo "等待120s,直到emulator完全启动，由于在docker上emulator启动较慢，请耐心等候"
+ echo "等待115s,直到emulator完全启动，由于在docker上emulator启动较慢，请耐心等候"
  sleep 115
  
  arrays=$(find $FLOW_CURRENT_PROJECT_PATH -name *-unaligned.apk 2>&1)
