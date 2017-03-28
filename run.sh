@@ -24,6 +24,7 @@ echo "can't find *-debug-androidTest-unaligned.apk"
 echo "./gradlew assembleAndroidTest"
 ./gradlew assembleAndroidTest
 fi
+sleep 5
 
 cd /usr/sdk/android-sdk-linux/tools
  echo "android create avd -n test -t 22 --abi default/armeabi-v7a"
