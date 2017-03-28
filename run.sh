@@ -33,8 +33,8 @@ cd /usr/sdk/android-sdk-linux/tools
  echo "emulator -avd test -no-audio -no-window -system /usr/sdk/android-sdk-linux/system-images/android-23/default/armeabi-v7a/system.img &"
  emulator -avd test -no-audio -no-window -system /usr/sdk/android-sdk-linux/system-images/android-23/default/armeabi-v7a/system.img &
  echo "adb wait-for-device"
- adb wait-for-device
  echo "等待115s,直到emulator完全启动，由于在docker上emulator启动较慢，请耐心等候"
+ adb wait-for-device
  sleep 115
 
  
