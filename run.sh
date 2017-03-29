@@ -10,10 +10,10 @@
 
 set +e
 
-
+  #sdk默认为23
   echo "Use default Android SDK: android-23"
   export FLOW_ANDROID_SDK_VERSION=android-23
-
+  #abi默认为armeabi-v7a
   echo "Use default Android CPU: armeabi-v7a"
   export FLOW_ANDROID_CPU_VERSION=armeabi-v7a
 
@@ -26,11 +26,15 @@ set +e
   fi
   sleep 5
   
+  #进入到tools目录下，里面有android、emulator等工具
   cd /usr/sdk/android-sdk-linux/tools
   
+  #创建名为test的avd，sdk为23(-t 22在docker内表示android-23)，abi为armeabi-v7a
+  #不支持x86_64
   echo "android create avd -n test -t 22 --abi default/armeabi-v7a"
   echo no | android create avd -n test -t 22 --abi default/armeabi-v7a
  
+  #启动emulator
   echo "emulator -avd test -no-audio -no-window -system /usr/sdk/android-sdk-linux/system-images/android-23/default/armeabi-v7a/system.img &"
   emulator -avd test -no-audio -no-window -system /usr/sdk/android-sdk-linux/system-images/android-23/default/armeabi-v7a/system.img &
   
@@ -39,15 +43,17 @@ set +e
   adb wait-for-device
   sleep 115
 
- 
+  #找到*-debug-unaligned.apk、*-androidTest-unaligned.apk,并安装
   arrays=$(find $FLOW_CURRENT_PROJECT_PATH -name *-unaligned.apk 2>&1)
   for file in ${arrays[@]}
    do
      echo "install APK: "
      adb install -r $file
    done
- 
+  #adb shell pm list instrumentation可以列举可用的instrumentation,
+  #通过下面这条语句可以提取我们所需的instrumentation
   instrumentation=$(adb shell pm list instrumentation|grep 'test/android'|awk -F ' ' '{print substr($1,17)}')
   echo "shell am instrument -w $instrumentation"
   sleep 1
+  #启动UI测试
   adb shell am instrument -w $instrumentation
