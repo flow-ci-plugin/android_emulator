@@ -50,10 +50,15 @@ set +e
      echo "install APK: "
      adb install -r $file
    done
+   
   #adb shell pm list instrumentation可以列举可用的instrumentation,
   #通过下面这条语句可以提取我们所需的instrumentation
   instrumentation=$(adb shell pm list instrumentation|grep 'test/android'|awk -F ' ' '{print substr($1,17)}')
-  echo "shell am instrument -w $instrumentation"
-  sleep 1
-  #启动UI测试
-  adb shell am instrument -w $instrumentation
+  if [ -z "$instrumentation" ] ; then
+     echo "can not find instrumentation for UI test of your project"
+  else
+     echo "shell am instrument -w $instrumentation"
+     sleep 1
+     #启动UI测试
+     adb shell am instrument -w $instrumentation
+  fi
