@@ -20,9 +20,9 @@ set +e
   array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-androidTest-unaligned.apk 2>&1)
   #array为空，说明没有安装*-androidTest-unaligned.apk
   if [ -z "$array" ] ; then
-    echo "can't find *-debug-androidTest-unaligned.apk"
-    echo "./gradlew assembleAndroidTest"
-    ./gradlew assembleAndroidTest
+     echo "can't find *-debug-androidTest-unaligned.apk"
+     echo "./gradlew assembleAndroidTest"
+     ./gradlew assembleAndroidTest
   fi
   sleep 5
   
