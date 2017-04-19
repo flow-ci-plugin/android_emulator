@@ -15,6 +15,7 @@ inputs:
     editable: true
     desc_cn: "Android sdk 版本"
     desc_en: "Android sdk version"
+    category: "select"
     options:
       - android-23=android-23
     default: 'android-23'
@@ -23,6 +24,7 @@ inputs:
     editable: true
     desc_cn: "Android cpu 版本"
     desc_en: "Android cpu version"
+    category: "select"
     options:
       - armeabi-v7a=armeabi-v7a
     default: 'armeabi-v7a'  
