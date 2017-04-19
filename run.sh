@@ -10,12 +10,16 @@
 
 set +e
 
-  #sdk默认为23
-  echo "Use default Android SDK: android-23"
-  export FLOW_ANDROID_SDK_VERSION=android-23
-  #abi默认为armeabi-v7a
-  echo "Use default Android CPU: armeabi-v7a"
-  export FLOW_ANDROID_CPU_VERSION=armeabi-v7a
+  if [[ -z $FLOW_ANDROID_SDK_VERSION ]]; then
+    export FLOW_ANDROID_SDK_VERSION=android-23
+  fi
+  
+  if [[ -z FLOW_ANDROID_CPU_VERSION ]]; then
+    export FLOW_ANDROID_CPU_VERSION=armeabi-v7a
+  fi
+
+  echo "Android SDK version: $FLOW_ANDROID_SDK_VERSION"
+  echo "Android CPU version: $FLOW_ANDROID_CPU_VERSION"
 
   array=$(find $FLOW_CURRENT_PROJECT_PATH -name *-androidTest-unaligned.apk 2>&1)
   #array为空，说明没有安装*-androidTest-unaligned.apk
