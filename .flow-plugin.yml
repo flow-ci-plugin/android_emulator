@@ -10,15 +10,21 @@ tags:
 
 public: true
 
-# clone_in_docker: false
-
 inputs:
   - name: FLOW_ANDROID_SDK_VERSION
     editable: true
+    desc_cn: "Android sdk 版本"
+    desc_en: "Android sdk version"
+    options:
+      - android-23=android-23
+    default: 'android-23'
 
   - name: FLOW_ANDROID_CPU_VERSION
     editable: true
-
-outputs:
+    desc_cn: "Android cpu 版本"
+    desc_en: "Android cpu version"
+    options:
+      - armeabi-v7a=armeabi-v7a
+    default: 'armeabi-v7a'  
 
 script_path: ./run.sh
